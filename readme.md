@@ -39,7 +39,6 @@
       * 3 specified model schemas (duplication) = ActiveModel, JSON Serializer, and Batman Models
       * Real-time is not built-in (no real-time in Batman-Barita)
       * Manually refreshing browser is required to see app changes
-      * Manually via jQuery set that the first option for a dropdowns is selected or it will be undefined
   
   Meteor.js:
   
