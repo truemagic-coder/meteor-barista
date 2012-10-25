@@ -47,7 +47,6 @@
       * Real-time built-in 
       * Auto-refreshes browser on app changes 
       * Decent documentation
-      * Automatically selects first option in dropdowns and is not undefined
   
     Cons:
       * Validations are not built-in
