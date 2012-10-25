@@ -1,4 +1,4 @@
-# Barista - CoffeeShop Ordering System
+# Barista - CoffeeShop Ordering System 
 ## How to use:
   1. npm install meteorite (if not already installed)
   2. git clone https://github.com/bevanhunt/meteor-barista.git
@@ -9,6 +9,9 @@
 
 ## Why:
   Meteor.js vs. Batman-Rails using a MVC forms app
+
+## Note: 
+  Meteor.js version is real-time 
 
 ## Demo:
   http://barista.meteor.com
