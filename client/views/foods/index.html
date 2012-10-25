@@ -1,0 +1,20 @@
+<template name="foods_index">
+  <h1>Foods</h1>
+  <div class="mb_20">
+    <a id="new" class="btn btn-primary">New Food</a>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Price Per Gram</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each foods}}
+        {{> food}}
+      {{/each}}
+    </tbody>
+  </table>
+</template>

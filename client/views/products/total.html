@@ -1,0 +1,34 @@
+<template name="product_total">
+  <tr>
+    <td class="iq" colspan='4'>
+      <span class="fwb">Total:</span>
+        <span class="total ml_10">{{total}}</span> 
+  </tr>
+  <tr>
+    <td class="comp" colspan='4'>
+      <table>
+        <tr>
+          <td>
+            <span id="add" class="btn btn-warning">Add Modification</span>
+          </td>
+          <td class="cstd">
+            <select id="mod" class="w_230">
+              {{#each modifications}}
+                {{> mod}}
+              {{/each}}
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              {{#each mods}}
+                {{> product_mods}}
+              {{/each}}
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</template>

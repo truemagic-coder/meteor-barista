@@ -1,0 +1,22 @@
+<template name="orders_index">
+  <h1>Orders</h1>
+  <div class="mb_20">
+    <a id="new" class="btn btn-primary">New Order</a>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Barista</th>
+        <th>Status</th>
+        <th>Subtotal</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each orders}}
+        {{> order}}
+      {{/each}}
+    </tbody>
+  </table>
+</template>

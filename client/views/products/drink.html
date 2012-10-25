@@ -1,0 +1,29 @@
+<template name="product_drink">
+  <td class="ir"> 
+    <label class="lbr_100">Name:</label>
+    <span class="mt_5"></span>
+    <select id="name" class="w_230"> 
+      {{#each names}}
+        {{> dropdown}}
+      {{/each}}
+    </select>
+  <td class="ir"> 
+    <label class="lbr_100">Size:</label>
+    <span class="mt_5"></span>
+    <select id="size" class="w_100"> 
+      {{#each sizes}}
+        {{> size}}
+      {{/each}}
+    </select>
+  </td>
+  <td class="ir">
+    <label class="lbr_100">Units:</label>
+    <span class="mt_5"></span>
+    <input id="unit" class="irq" /> 
+    <span style='padding-left: 15px;'>
+      <a id="destroy">
+        <i class='icon-remove-sign'></i>
+      </a>
+    </span>
+  </td>
+</template>

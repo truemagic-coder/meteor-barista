@@ -1,0 +1,29 @@
+<template name="product">
+  <div class="products">
+    <form>
+      <fieldset>
+        <table>
+          <tr>
+            <td class="vt">
+              <label class="lbr_100">Product:</label>
+              <select id="type" class="w_100">
+                {{#each types}}
+                  {{> dropdown}}
+                {{/each}}
+              </select>
+            </td>
+            {{#if food}}
+              {{> product_food}}
+            {{/if}}
+            {{#if drink}}
+              {{> product_drink}}
+            {{/if}}
+          </tr>
+          {{#if total}}
+            {{> product_total}}
+          {{/if}}
+        </table>
+      </fieldset>
+    </form>
+  </div>
+</template>

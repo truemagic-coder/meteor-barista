@@ -1,0 +1,20 @@
+<template name="orders_main">  
+  <form name='form' class='form-horizontal'>
+    <fieldset>
+      <label class='lbl_50'>Barista:</label>
+      <div class='mt_5'></div>
+      <select name='barista' id='barista'>
+        {{#each baristas}}
+          {{> dropdown}}
+        {{/each}}
+      </select>
+      <label class='lbl_50'>Status:</label>
+      <div class='mt_5'></div>
+      <select name='status' id='status'>
+        {{#each statuses}}
+          {{> dropdown}}
+        {{/each}}
+      </select>
+    </fieldset>
+  </form>
+</template>

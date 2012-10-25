@@ -1,0 +1,20 @@
+<template name="drinks_index">
+  <h1>Drinks</h1>
+  <div class="mb_20">
+    <a id="new" class="btn btn-primary">New Drink</a>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each drinks}}
+        {{> drink}}
+      {{/each}}
+    </tbody>
+  </table>
+</template>
