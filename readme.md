@@ -10,6 +10,15 @@
 ## Why:
   Meteor.js vs. Batman-Rails using a MVC forms app
 
+## Demo:
+  http://barista.meteor.com
+
+## Batman-Barista:
+  https://github.com/bevanhunt/batman-barista
+
+## ToDo:
+  * Meteor: Create form validations
+
 ## Comparsion:
   Batman-Rails:
     
@@ -41,12 +50,3 @@
       * Client-side REST requires manually writing Backbone routes - requires a 3rd party library (Reactive Router)
       * No HTML templating language - should support Jade 
       * Has no concept of form value preservation
-
-## Demo:
-  http://barista.meteor.com
-
-## Batman-Barista:
-  https://github.com/bevanhunt/batman-barista
-
-## ToDo:
-  * Meteor: Create form validations
