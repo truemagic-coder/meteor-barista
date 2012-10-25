@@ -10,8 +10,9 @@
 ## Why:
   Meteor.js vs. Batman-Rails using a MVC forms app
 
-## Note: 
+## Notes: 
   Meteor.js version is real-time 
+  
   Updating foods or drinks will only be available to products that have not been added to an order yet
 
 ## Demo:
