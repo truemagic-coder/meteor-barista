@@ -1,3 +1,4 @@
+# create pubs 
 # foods
 Foods = new Meteor.Collection('foods')
 Meteor.publish 'foods', -> Foods.find()
@@ -31,6 +32,7 @@ Meteor.publish 'modifications', -> Modifications.find()
 Mods = new Meteor.Collection('mods')
 Meteor.publish 'mods', -> Mods.find()
 
+# create server methods - this allows callbacks on the client - useful for navigation
 Meteor.methods
   'food': (id) -> Foods.findOne({_id: id})
   'drink': (id) -> Drinks.findOne({_id: id})
@@ -39,17 +41,21 @@ Meteor.methods
   'drinks_insert': (name, size, price) -> Drinks.insert({name: name, size: size, price: price})
   'drinks_update': (id, name, size, price) -> Drinks.update({_id: id}, {name: name, size: size, price: price})
   'orders_insert': (barista) -> 
+    # increment by 1 on insert (auto-increment)
     number = OrderNumber.findOne({num: 1}).number
     OrderNumber.update({num: 1}, {$inc: {number: 1}})
     status = "Waiting"
     Orders.insert({number: number, barista: barista, status: status})
   'products_insert': (order_id) -> Products.insert({order_id: order_id, type: "Drink"})
 
+# on startup - create collections with default values
 Meteor.startup ->
+  # create auto-increment collection for orders
   if OrderNumber.find().count() is 0
     OrderNumber.insert({num: 1, number: 1})
   if Modifications.find().count() is 0
-    # use underscores - as spaces break the inserting of values into select options
+    # use underscores rather than spaces 
+    # Handlebars breaks the value at the space when inserting into an option
     mods = [
       {name: "Shot_of_Expresso", type: "Drink"}
       {name: "Grill", type: "Food"}

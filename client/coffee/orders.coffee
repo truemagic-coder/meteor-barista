@@ -1,3 +1,6 @@
+# events
+# note: e is event and t is template
+# find is Template find
 Template.orders_index.events
   'click .edit': -> Router.orders_edit_path(@)
   'click .delete': -> Orders.remove({_id: @._id})
@@ -20,13 +23,21 @@ Template.orders_edit.events
   'click #add': -> Meteor.call 'products_insert', Session.get('id')
   'click #back': -> window.Back('orders')
 
+# formatters
 Template.order.subtotal = -> accounting.formatMoney(@.subtotal)
 Template.order.total = -> accounting.formatMoney(@.total)
+
+# lists
 Template.orders_index.orders = -> Orders.find()
+
+# selects
 Template.orders_new.baristas = -> Baristas.find()
 Template.orders_main.baristas = -> Baristas.find()
 Template.orders_main.statuses = -> Statuses.find()
 Template.orders_edit.products = -> Products.find({order_id: Session.get('id')})
+
+# dynamic values
+# use Mini-Mongo rather than Server Methods - as have to return values in scope
 Template.orders_edit.totaled = ->
   order = Orders.findOne({_id: Session.get('id')})
   total = order && order.total
@@ -44,10 +55,12 @@ Template.orders_total.total = ->
   total = order && order.total
   accounting.formatMoney(total)
 
+# on re-render - use Mini-Mongo with short-circuting to re-paint both selects in-sync
+# using a server method with a callback - re-paints out of sync
 Template.orders_main.rendered = -> 
-  order = Orders.findOne({_id: Session.get('id')}) 
-  barista = order && order.barista
-  status = order && order.status
+  order = Orders.findOne({_id: Session.get('id')})
+  barista = order and order.barista
+  status = order and order.status
   if !barista and !status
   else
     $("#barista option[value='" + barista + "']").attr('selected', 'selected')

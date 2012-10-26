@@ -1,3 +1,6 @@
+# events 
+# note: e is event and t is template
+# find is Template find
 Template.product.events
   'change #type': (e, t) ->
     n = t.find('#type')
@@ -61,16 +64,24 @@ Template.product_mods.events
   'click #mod_destroy': ->
     Mods.remove({_id: @._id})
 
+# formatters
+# replace the underscores with spaces for the display values 
+# underscores are needed as Handlebars breaks the value on the space when inserting
 Template.mod.name_formatted = -> @.name.replace(/_/g, " ")
 Template.product_mods.mod = -> @.name.replace(/_/g, " ")
-Template.product_total.mods = -> Mods.find({product_id: @._id})
-Template.product_total.modifications = -> Modifications.find({type: @.type})
-Template.product_total.total = -> accounting.formatMoney(@.total)
+
+# conditionals
 Template.product.drink = -> if @.type is 'Drink' then return true else return false
 Template.product.food = -> if @.type is 'Food' then return true else return false
 Template.product.total = -> if @.total > 0 then return true else return false
+
+# selects
+Template.product_total.mods = -> Mods.find({product_id: @._id})
+Template.product_total.modifications = -> Modifications.find({type: @.type})
+Template.product_total.total = -> accounting.formatMoney(@.total)
 Template.product.types = -> Types.find()
 Template.product_drink.sizes = -> 
+  # only use unique values
   sizes = []
   items = [{size: ""}]
   Drinks.find({name: @.name}).forEach (x) -> 
@@ -79,6 +90,7 @@ Template.product_drink.sizes = ->
       sizes.add(x.size)
   return items
 Template.product_food.names = ->
+  # only use unique values
   names = []
   items = [{name: ""}]
   Foods.find().forEach (x) -> 
@@ -86,7 +98,8 @@ Template.product_food.names = ->
       items.add(x)
       names.add(x.name)
   return items
-Template.product_drink.names = -> 
+Template.product_drink.names = ->
+  # only use unique values 
   names = []
   items = [{name: ""}]
   Drinks.find().forEach (x) -> 
@@ -94,8 +107,10 @@ Template.product_drink.names = ->
       items.add(x)
       names.add(x.name)
   return items
+
+# preserve input values on re-rendering
+# note: @.find is Template find
 Template.product.rendered = ->
-  # preserve input values
   product = Products.findOne({_id: @.data._id})
   # loop through options and match then set the selected index
   if product.type 
@@ -115,7 +130,8 @@ Template.product.rendered = ->
           n.selectedIndex = count
           matched = true
         count++
-      # if the associated record is deleted - then show the current value
+      # if the associated record is deleted 
+      # then show the current value by inserting it into the select 
       if count > 0 and !matched
         if n.selectedIndex = -1
           option = document.createElement("option")
@@ -137,7 +153,8 @@ Template.product.rendered = ->
             s.selectedIndex = count
             matched = true
           count++
-        # if the associated record is deleted - then show the current value
+        # if the associated record is deleted 
+        # then show the current value by inserting it into the select 
         if count > 0 and !matched
           if s.selectedIndex = -1
             option = document.createElement("option")

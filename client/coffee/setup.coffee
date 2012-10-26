@@ -1,3 +1,4 @@
+# create subs 
 # foods
 Meteor.subscribe('foods')
 Foods = new Meteor.Collection('foods')
@@ -29,6 +30,7 @@ Modifications = new Meteor.Collection('modifications')
 Meteor.subscribe('mods')
 Mods = new Meteor.Collection('mods')
 
+# create back method to navigate one-step back in Backbone history
 window.Back = (root) ->
   if Backbone.history.length > 0
     prev_url = Backbone.history[Backbone.history.length - 1]
@@ -36,6 +38,9 @@ window.Back = (root) ->
     prev_url = root
   Router.navigate(prev_url, {trigger: true})
 
+# create quasi-RESTful routing (new, index, and edit)
+# for edit action -> store object id in a Session variable as accessing Template.data is not always possible
+# create _path options for in-app navigation - similar to Rails
 MyRouter = ReactiveRouter.extend
   routes: 
     '': 'home'
@@ -82,10 +87,12 @@ MyRouter = ReactiveRouter.extend
     @.navigate(url, {trigger: true})
 Router = new MyRouter()
 
+# create links on the layout to access the various index pages 
 Template.layout.events
   'click #logo': -> Router.navigate('', {trigger: true})
   'click #foods': -> Router.navigate('foods', {trigger: true})
   'click #drinks': -> Router.navigate('drinks', {trigger: true})
   'click #orders': -> Router.navigate('orders', {trigger: true})
 
+# on startup of the client - start collecting the history of their navigation
 Meteor.startup -> Backbone.history.start({pushState: true})
