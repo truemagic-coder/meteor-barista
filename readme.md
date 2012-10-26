@@ -53,4 +53,4 @@
       * Client-side REST requires manually writing Backbone routes - requires a 3rd party library (Reactive Router)
       * No HTML templating language - should support Jade 
       * Has no concept of form value preservation for non-focused inputs
-      * Re-renders the entire template - should support Rivets.js
+      * Re-renders the entire template - should support HTML data-bindings
