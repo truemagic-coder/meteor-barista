@@ -10,7 +10,7 @@ Template.foods_new.events
   'click #create': (e, t) -> 
     # use sugarjs to capitalize 
     name = t.find('#name').value.capitalize()
-    # set the type of float - otherwise it save as string
+    # save as a number - otherwise it will default to string 
     gram = parseFloat(t.find('#gram').value)
     price = parseFloat(t.find('#price').value)
     Meteor.call 'foods_insert', name, gram, price, (err, data) ->
@@ -21,7 +21,7 @@ Template.foods_new.events
     if e.keyCode is 13
       # use sugarjs to capitalize 
       name = t.find('#name').value.capitalize()
-      # set the type of float - otherwise it save as string
+      # save as a number - otherwise it will default to string 
       gram = parseFloat(t.find('#gram').value)
       price = parseFloat(t.find('#price').value)
       Meteor.call 'foods_insert', name, gram, price, (err, data) ->
@@ -31,7 +31,7 @@ Template.foods_edit.events
   'click #update': (e, t) -> 
     # use sugarjs to capitalize 
     name = t.find('#name').value.capitalize()
-    # set the type of float - otherwise it save as string
+    # save as a number - otherwise it will default to string 
     gram = parseFloat(t.find('#gram').value)
     price = parseFloat(t.find('#price').value)
     Meteor.call 'foods_update', Session.get('id'), name, gram, price, (err, data) ->
@@ -42,7 +42,7 @@ Template.foods_edit.events
     if e.keyCode is 13
       # use sugarjs to capitalize 
       name = t.find('#name').value.capitalize()
-      # set the type of float - otherwise it save as string
+      # save as a number - otherwise it will default to string 
       gram = parseFloat(t.find('#gram').value)
       price = parseFloat(t.find('#price').value)
       Meteor.call 'foods_update', Session.get('id'), name, gram, price, (err, data) ->

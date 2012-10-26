@@ -9,7 +9,7 @@ Template.drinks_new.events
     size = $('#size option:selected').val()
     # use sugarjs to capitalize 
     name = $('#name').val().capitalize()
-    # set the type of float - otherwise it save as string
+    # save as a number - otherwise it will default to string 
     price = parseFloat($('#price').val())
     Meteor.call 'drinks_insert', name, size, price, (err, data) ->
       Router.navigate('drinks', {trigger: true})
@@ -19,7 +19,7 @@ Template.drinks_edit.events
   'click #update': -> 
     size = $('#size option:selected').val()
     name = $('#name').val().capitalize()
-    # set the type of float - otherwise it save as string
+    # save as a number - otherwise it will default to string 
     price = parseFloat($('#price').val())
     Meteor.call 'drinks_update', Session.get('id'), name, size, price, (err, data) ->
       Router.navigate('drinks', {trigger: true})
