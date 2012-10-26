@@ -147,4 +147,4 @@ Template.product.rendered = ->
             s.selectedIndex = s.options.length - 1
     if product.units > 0
         u = @.find('#unit')
-        u.value = product.units  
+        u.value = product.units 

@@ -51,5 +51,5 @@
     Cons:
       * Validations are not built-in
       * Client-side REST requires manually writing Backbone routes - requires a 3rd party library (Reactive Router)
-      * No HTML templating language - should support Jade 
+      * Writing HTML in Handlebars - should support Jade 
       * Re-renders the entire template - should support HTML data-bindings
