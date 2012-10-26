@@ -8,7 +8,7 @@
   6. add foods and drinks then add orders
 
 ## Why:
-  Meteor.js vs. Batman-Rails using a MVC forms app
+  Meteor.js vs. Batman-Rails using a LOB app
 
 ## Notes: 
   Meteor.js version is real-time 
