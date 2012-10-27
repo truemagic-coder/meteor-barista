@@ -6,6 +6,7 @@
   "packages": {
     "router": {},
     "bootstrap.less": {},
-    "accounting": {}
+    "accounting": {},
+    "sugar": {}
   }
 }

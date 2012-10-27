@@ -8,7 +8,8 @@
     "basePackages": {
       "router": {},
       "bootstrap.less": {},
-      "accounting": {}
+      "accounting": {},
+      "sugar": {}
     },
     "packages": {
       "router": {
@@ -25,6 +26,11 @@
         "git": "https://github.com/IainShigeoka/meteor-accounting.git",
         "tag": "v0.3.2.3",
         "commit": "330cf532e6ac7282cf85ef3b83a54c1a25f5bdae"
+      },
+      "sugar": {
+        "git": "https://github.com/bevanhunt/meteor-sugar.git",
+        "tag": "v0.0.3",
+        "commit": "ad1cbcf15be06ef40b7cb25f8cdbc0707d4cac94"
       },
       "deps-extensions": {
         "git": "https://github.com/tmeasday/meteor-deps-extensions.git",
