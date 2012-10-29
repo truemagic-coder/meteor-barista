@@ -18,6 +18,7 @@ Template.drinks_new.events
 Template.drinks_edit.events
   'click #update': -> 
     size = $('#size option:selected').val()
+    # use sugarjs to capitalize 
     name = $('#name').val().capitalize()
     # save as a number - otherwise it will default to string 
     price = parseFloat($('#price').val())

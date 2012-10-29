@@ -8,7 +8,7 @@
   6. add foods and drinks then add orders
 
 ## Why:
-  Meteor.js vs. Batman-Rails using a LOB app
+  Meteor.js vs. Batman-Rails using a LOB app (Round 1)
 
 ## Notes: 
   Meteor.js version is real-time 
@@ -16,13 +16,10 @@
   When you update foods or drinks - the updated versions will only be available to products that have not been added to an order yet
 
 ## Demo:
-  http://barista.meteor.com
+  http://barista.meteor.com 
 
 ## Batman-Barista:
   https://github.com/bevanhunt/batman-barista
-
-## ToDo:
-  * Meteor: Create form validations
 
 ## Comparsion:
   Batman-Rails:

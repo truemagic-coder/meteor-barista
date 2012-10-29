@@ -29,8 +29,8 @@
       },
       "sugar": {
         "git": "https://github.com/bevanhunt/meteor-sugar.git",
-        "tag": "v0.0.3",
-        "commit": "ad1cbcf15be06ef40b7cb25f8cdbc0707d4cac94"
+        "tag": "v0.0.6",
+        "commit": "d7638dd26325e5e053d9c014a25f216ed5777d4d"
       },
       "deps-extensions": {
         "git": "https://github.com/tmeasday/meteor-deps-extensions.git",
