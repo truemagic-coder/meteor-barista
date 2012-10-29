@@ -9,7 +9,8 @@
       "router": {},
       "bootstrap.less": {},
       "accounting": {},
-      "sugar": {}
+      "sugar": {},
+      "knockout": {}
     },
     "packages": {
       "router": {
@@ -31,6 +32,11 @@
         "git": "https://github.com/bevanhunt/meteor-sugar.git",
         "tag": "v0.0.6",
         "commit": "d7638dd26325e5e053d9c014a25f216ed5777d4d"
+      },
+      "knockout": {
+        "git": "https://github.com/bevanhunt/meteor-knockout.git",
+        "tag": "v0.1.4",
+        "commit": "aa0ea0dd16df68f27ef2cab554173d8c69e3da61"
       },
       "deps-extensions": {
         "git": "https://github.com/tmeasday/meteor-deps-extensions.git",
