@@ -26,7 +26,7 @@ Template.foods_new.rendered = ->
     back: -> window.Back('foods')
     submit: ->
       if model.errors().length is 0
-        Meteor.call 'foods_insert', Session.get('id'), ko.toJS(@), (err, data) ->
+        Meteor.call 'foods_insert', ko.toJS(@), (err, data) ->
           Router.navigate('foods', {trigger: true})
       else
         model.errors.showAllMessages()
@@ -52,6 +52,7 @@ Template.foods_edit.rendered = ->
       back: -> window.Back('foods')
       submit: ->
         if model.errors().length is 0
+          console.log ko.toJS(@)
           Meteor.call 'foods_update', Session.get('id'), ko.toJS(@), (err, data) ->
             Router.navigate('foods', {trigger: true})
         else

@@ -23,8 +23,8 @@ Template.drinks_new.rendered = ->
       name: ko.observable().extend({required: true, maxLength: 20})
       size: ko.observable().extend({required: true})
       price: ko.observable().extend({required: true, max: 20})
-      sizes: ko.observable(data)
-      back: -> window.Back('foods')
+      sizes: ko.observableArray(data.data)
+      back: -> window.Back('drinks')
       submit: ->
         if model.errors().length is 0
           Meteor.call 'drinks_insert', ko.toJS(@), (err, data) ->
@@ -50,8 +50,8 @@ Template.drinks_edit.rendered = ->
       name: ko.observable(data.drink.name).extend({required: true, maxLength: 20})
       size: ko.observable(data.drink.size).extend({required: true})
       price: ko.observable(data.drink.price).extend({required: true, max: 20})
-      sizes: ko.observable(data.sizes)
-      back: -> window.Back('foods')
+      sizes: ko.observableArray(data.sizes.data)
+      back: -> window.Back('drinks')
       submit: ->
         if model.errors().length is 0
           Meteor.call 'drinks_update', Session.get('id'), ko.toJS(@), (err, data) ->

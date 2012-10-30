@@ -4,16 +4,12 @@
     <fieldset>
       <label class='lbl_50'>Barista:</label>
       <div class='mt_5'></div>
-      <select name='barista' id='barista'>
-        {{#each baristas}}
-          {{> dropdown}}
-        {{/each}}
-      </select>
+      <select id='barista' data-bind="options: baristas, value: barista, optionsCaption: 'Choose...'"></select>
       <div class='mt_20'></div>
-      <div id="create" class='btn btn-primary'>Create Order</div>
+      <div id="create" class='btn btn-primary' data-bind='click: submit'>Create Order</div>
     </fieldset>
   </form>
   <div class="mt_30">
-    <a id="back" href="javascript:{}">Back</a>
+    <a id="back" href="javascript:{}" data-bind='click: back'>Back</a>
   </div>
 </template>

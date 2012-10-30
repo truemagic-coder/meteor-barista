@@ -34,17 +34,13 @@ Meteor.publish 'mods', -> Mods.find()
 
 # create server methods - this allows callbacks on the client - useful for navigation
 Meteor.methods
-  'sizes': -> 
-    sizes = []
-    _.each Sizes.find().fetch(), (x) ->
-      sizes.push(x.name)
-    return sizes
+  'order_main': ->
+    return {baristas: Baristas.findOne({key: 1}), statuses: Statuses.findOne({key: 1})}
   'food': (id) -> Foods.findOne({_id: id})
+  'baristas': -> Baristas.findOne({key: 1})
+  'sizes': -> Sizes.findOne({key: 1})
   'drink': (id) -> 
-    sizes = []
-    _.each Sizes.find().fetch(), (x) ->
-      sizes.push(x.name)
-    return {sizes: sizes, drink: Drinks.findOne({_id: id})}
+    return {sizes: Sizes.findOne(key: 1), drink: Drinks.findOne({_id: id})}
   'foods_insert': (js) -> 
     # save as a number - otherwise it will default to string 
     price = parseFloat(js.price)
@@ -73,11 +69,12 @@ Meteor.methods
     # use sugarjs to capitalize 
     name = js.name.capitalize()
     Drinks.update({_id: id}, {$set: {name: name, size: size, price: price}})
-  'orders_insert': (barista) -> 
+  'orders_insert': (js) -> 
     # increment by 1 on insert (auto-increment)
     number = OrderNumber.findOne({num: 1}).number
     OrderNumber.update({num: 1}, {$inc: {number: 1}})
     status = "Waiting"
+    barista = js.barista
     Orders.insert({number: number, barista: barista, status: status})
   'products_insert': (order_id) -> Products.insert({order_id: order_id, type: "Drink"})
 
@@ -104,38 +101,14 @@ Meteor.startup ->
         name: mod.name
         type: mod.type
   if Types.find().count() is 0
-    types = [
-      "Drink"
-      "Food"
-    ]
-    for type in types
-      Types.insert
-        name: type
+    types = ["Drink", "Food"]
+    Types.insert(types)
   if Sizes.find().count() is 0
-    sizes = [
-      "Small"
-      "Medium"
-      "Large"
-    ]
-    for size in sizes
-      Sizes.insert
-        name: size
+    sizes = ["Small", "Medium", "Large"]
+    Sizes.insert(key: 1, data: sizes)
   if Baristas.find().count() is 0
-    baristas = [ 
-      "Kim"
-      "Heather"
-      "Janice"
-      "Paul"
-    ]
-    for barista in baristas
-      Baristas.insert
-        name: barista
+    baristas = ["Kim", "Heather", "Janice", "Paul"]
+    Baristas.insert(key: 1, data: baristas)
   if Statuses.find().count() is 0
-    statuses = [
-      "Waiting"
-      "Making"
-      "Done"
-    ]
-    for status in statuses
-      Statuses.insert
-        name: status
+    statuses = ["Waiting", "Making", "Done"]
+    Statuses.insert(key: 1, data: statuses)

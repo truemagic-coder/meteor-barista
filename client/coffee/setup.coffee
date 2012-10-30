@@ -1,3 +1,34 @@
+# foods
+Meteor.subscribe('foods')
+Foods = new Meteor.Collection('foods')
+# drinks
+Meteor.subscribe('drinks')
+Drinks = new Meteor.Collection('drinks')
+# types
+Meteor.subscribe('types')
+Types = new Meteor.Collection('types')
+# sizes
+Meteor.subscribe('sizes')
+Sizes = new Meteor.Collection('sizes')
+# orders
+Meteor.subscribe('orders')
+Orders = new Meteor.Collection('orders')
+# baristas
+Meteor.subscribe('baristas')
+Baristas = new Meteor.Collection('baristas')
+# statuses
+Meteor.subscribe('statuses')
+Statuses = new Meteor.Collection('statuses')
+# products
+Meteor.subscribe('products')
+Products = new Meteor.Collection('products')
+# modifications
+Meteor.subscribe('modifications')
+Modifications = new Meteor.Collection('modifications')
+# mods
+Meteor.subscribe('mods')
+Mods = new Meteor.Collection('mods')
+
 # create back method to navigate one-step back in Backbone history
 window.Back = (root) ->
   if Backbone.history.length > 0
@@ -64,35 +95,3 @@ Template.layout.events
 
 # on startup of the client - start collecting the history of their navigation
 Meteor.startup -> Backbone.history.start({pushState: true})
-
-# put this at the bottom - or going directly to pages will not load them 
-# foods
-Meteor.subscribe('foods')
-Foods = new Meteor.Collection('foods')
-# drinks
-Meteor.subscribe('drinks')
-Drinks = new Meteor.Collection('drinks')
-# types
-Meteor.subscribe('types')
-Types = new Meteor.Collection('types')
-# sizes
-Meteor.subscribe('sizes')
-Sizes = new Meteor.Collection('sizes')
-# orders
-Meteor.subscribe('orders')
-Orders = new Meteor.Collection('orders')
-# baristas
-Meteor.subscribe('baristas')
-Baristas = new Meteor.Collection('baristas')
-# statuses
-Meteor.subscribe('statuses')
-Statuses = new Meteor.Collection('statuses')
-# products
-Meteor.subscribe('products')
-Products = new Meteor.Collection('products')
-# modifications
-Meteor.subscribe('modifications')
-Modifications = new Meteor.Collection('modifications')
-# mods
-Meteor.subscribe('mods')
-Mods = new Meteor.Collection('mods')
