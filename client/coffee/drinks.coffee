@@ -3,44 +3,61 @@ Template.drinks_index.events
   'click .edit': -> Router.drinks_edit_path(@)
   'click .delete': -> Drinks.remove({_id: @._id})
   'click #new': -> Router.navigate('drinks/new', {trigger: true})
-        
-Template.drinks_new.events
-  'click #create': -> 
-    size = $('#size option:selected').val()
-    # use sugarjs to capitalize 
-    name = $('#name').val().capitalize()
-    # save as a number - otherwise it will default to string 
-    price = parseFloat($('#price').val())
-    Meteor.call 'drinks_insert', name, size, price, (err, data) ->
-      Router.navigate('drinks', {trigger: true})
-  'click #back': -> window.Back('drinks')
-
-Template.drinks_edit.events
-  'click #update': -> 
-    size = $('#size option:selected').val()
-    # use sugarjs to capitalize 
-    name = $('#name').val().capitalize()
-    # save as a number - otherwise it will default to string 
-    price = parseFloat($('#price').val())
-    Meteor.call 'drinks_update', Session.get('id'), name, size, price, (err, data) ->
-      Router.navigate('drinks', {trigger: true})
-    Router.navigate('drinks', {trigger: true})
-  'click #back': -> window.Back('drinks')
 
 # lists
 Template.drinks_index.drinks = -> Drinks.find()
 
-# selects
-Template.drinks_new.sizes = -> Sizes.find()
-Template.drinks_edit.sizes = -> Sizes.find()
-
 # formatters
 Template.drink.price = -> accounting.formatMoney(@.price)
 
-# populate the edit form with the existing values
-Template.drinks_edit.created = -> 
+Template.drinks_new.rendered = ->    
+  ko.validation.configure
+    registerExtenders: true
+    messagesOnModified: true
+    insertMessages: true
+    parseInputAttributes: true
+    messageTemplate: null
+
+  Meteor.call 'sizes', (err, data) ->
+    model =  
+      name: ko.observable().extend({required: true, maxLength: 20})
+      size: ko.observable().extend({required: true})
+      price: ko.observable().extend({required: true, max: 20})
+      sizes: ko.observable(data)
+      back: -> window.Back('foods')
+      submit: ->
+        if model.errors().length is 0
+          Meteor.call 'drinks_insert', ko.toJS(@), (err, data) ->
+            Router.navigate('drinks', {trigger: true})
+        else
+          model.errors.showAllMessages()
+
+    model.errors = ko.validation.group(model)
+    ko.applyBindings(model)
+
+Template.drinks_edit.rendered = -> 
+  ko.validation.configure
+    registerExtenders: true
+    messagesOnModified: true
+    insertMessages: true
+    parseInputAttributes: true
+    messageTemplate: null
+
+  # populate the data into the form when rendered 
+  # won't keep in sync - in order to allow non-interrupted typing
   Meteor.call 'drink', Session.get('id'), (err, data) ->
-    # use jQuery as @.data is not in the created method
-    $("#size option[value='" + data.size + "']").attr('selected', 'selected')
-    $('#name').val(data.name)
-    $('#price').val(data.price)
+    model =  
+      name: ko.observable(data.drink.name).extend({required: true, maxLength: 20})
+      size: ko.observable(data.drink.size).extend({required: true})
+      price: ko.observable(data.drink.price).extend({required: true, max: 20})
+      sizes: ko.observable(data.sizes)
+      back: -> window.Back('foods')
+      submit: ->
+        if model.errors().length is 0
+          Meteor.call 'drinks_update', Session.get('id'), ko.toJS(@), (err, data) ->
+            Router.navigate('drinks', {trigger: true})
+        else
+          model.errors.showAllMessages()
+
+    model.errors = ko.validation.group(model)
+    ko.applyBindings(model)

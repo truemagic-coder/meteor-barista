@@ -34,12 +34,45 @@ Meteor.publish 'mods', -> Mods.find()
 
 # create server methods - this allows callbacks on the client - useful for navigation
 Meteor.methods
+  'sizes': -> 
+    sizes = []
+    _.each Sizes.find().fetch(), (x) ->
+      sizes.push(x.name)
+    return sizes
   'food': (id) -> Foods.findOne({_id: id})
-  'drink': (id) -> Drinks.findOne({_id: id})
-  'foods_insert': (name, gram, price) -> Foods.insert({name: name, pgram: gram, price: price, grams: 0})
-  'foods_update': (id, name, gram, price) -> Foods.update({_id: id}, {name: name, pgram: gram, price: price})
-  'drinks_insert': (name, size, price) -> Drinks.insert({name: name, size: size, price: price})
-  'drinks_update': (id, name, size, price) -> Drinks.update({_id: id}, {name: name, size: size, price: price})
+  'drink': (id) -> 
+    sizes = []
+    _.each Sizes.find().fetch(), (x) ->
+      sizes.push(x.name)
+    return {sizes: sizes, drink: Drinks.findOne({_id: id})}
+  'foods_insert': (js) -> 
+    # save as a number - otherwise it will default to string 
+    price = parseFloat(js.price)
+    pgram = parseFloat(js.pgram)
+    # use sugarjs to capitalize 
+    name = js.name.capitalize()
+    Foods.insert({name: name, pgram: pgram, price: price})
+  'foods_update': (id, js) -> 
+    # save as a number - otherwise it will default to string 
+    price = parseFloat(js.price)
+    pgram = parseFloat(js.pgram)
+    # use sugarjs to capitalize 
+    name = js.name.capitalize()
+    Foods.update({_id: id}, {$set: {name: name, pgram: pgram, price: price}})
+  'drinks_insert': (js) -> 
+    # save as a number - otherwise it will default to string 
+    price = parseFloat(js.price)
+    size = js.size
+    # use sugarjs to capitalize 
+    name = js.name.capitalize()
+    Drinks.insert({name: name, size: size, price: price})
+  'drinks_update': (id, js) -> 
+    # save as a number - otherwise it will default to string 
+    price = parseFloat(js.price)
+    size = js.size
+    # use sugarjs to capitalize 
+    name = js.name.capitalize()
+    Drinks.update({_id: id}, {$set: {name: name, size: size, price: price}})
   'orders_insert': (barista) -> 
     # increment by 1 on insert (auto-increment)
     number = OrderNumber.findOne({num: 1}).number

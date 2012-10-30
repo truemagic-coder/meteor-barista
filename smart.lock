@@ -30,13 +30,13 @@
       },
       "sugar": {
         "git": "https://github.com/bevanhunt/meteor-sugar.git",
-        "tag": "v0.0.6",
-        "commit": "d7638dd26325e5e053d9c014a25f216ed5777d4d"
+        "tag": "v0.0.7",
+        "commit": "4ac02c81d48c64509b1c22e556a1161470b4c800"
       },
       "knockout": {
         "git": "https://github.com/bevanhunt/meteor-knockout.git",
-        "tag": "v0.1.4",
-        "commit": "aa0ea0dd16df68f27ef2cab554173d8c69e3da61"
+        "tag": "v0.2.1",
+        "commit": "6f27f6917a2bb5bb11d8a79ef784ab3db66547c2"
       },
       "deps-extensions": {
         "git": "https://github.com/tmeasday/meteor-deps-extensions.git",

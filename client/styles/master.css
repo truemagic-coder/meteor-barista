@@ -4,6 +4,13 @@ body {
   font-size: 14px;
 }
 
+.validationMessage { 
+  color: red;
+  font-size: 11px;
+  padding-left: 10px; 
+  font-style: italic;
+}
+
 #header {
   padding-left: 150px; 
   font-size: 40px; 
