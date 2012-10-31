@@ -34,8 +34,6 @@ Meteor.publish 'mods', -> Mods.find()
 
 # create server methods - this allows callbacks on the client - useful for navigation
 Meteor.methods
-  'order_main': ->
-    return {baristas: Baristas.findOne({key: 1}), statuses: Statuses.findOne({key: 1})}
   'food': (id) -> Foods.findOne({_id: id})
   'baristas': -> Baristas.findOne({key: 1})
   'sizes': -> Sizes.findOne({key: 1})
@@ -102,13 +100,13 @@ Meteor.startup ->
         type: mod.type
   if Types.find().count() is 0
     types = ["Drink", "Food"]
-    Types.insert(key: 1, data: types)
+    Types.insert({key: 1, data: types})
   if Sizes.find().count() is 0
     sizes = ["Small", "Medium", "Large"]
-    Sizes.insert(key: 1, data: sizes)
+    Sizes.insert({key: 1, data: sizes})
   if Baristas.find().count() is 0
     barstars = ["Kim", "Heather", "Janice", "Paul"]
-    Baristas.insert(key: 1, data: barstars)
+    Baristas.insert({key: 1, data: barstars})
   if Statuses.find().count() is 0
     statuses = ["Waiting", "Making", "Done"]
-    Statuses.insert(key: 1, data: statuses)
+    Statuses.insert({key: 1, data: statuses})
