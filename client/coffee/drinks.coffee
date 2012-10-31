@@ -18,22 +18,32 @@ Template.drinks_new.rendered = ->
     parseInputAttributes: true
     messageTemplate: null
 
-  Meteor.call 'sizes', (err, data) ->
-    model =  
-      name: ko.observable().extend({required: true, maxLength: 20})
-      size: ko.observable().extend({required: true})
-      price: ko.observable().extend({required: true, max: 20})
-      sizes: ko.observableArray(data.data)
-      back: -> window.Back('drinks')
-      submit: ->
-        if model.errors().length is 0
-          Meteor.call 'drinks_insert', ko.toJS(@), (err, data) ->
-            Router.navigate('drinks', {trigger: true})
+  class Model   
+    constructor: -> 
+      @name = ko.observable().extend({required: true, maxLength: 20})
+      @size = ko.observable().extend({required: true})
+      @price = ko.observable().extend({required: true, max: 20})
+      @sizer = ko.meteor.find(Sizes, {})
+      @sizes = ko.computed =>
+        data = ko.toJS(@sizer)
+        if !data
+          return false
         else
-          model.errors.showAllMessages()
+          p = []
+          for size in data
+            p.push(size.name)
+          return p
+      , this
+      @errors = ko.validation.group(@)
+    back: -> window.Back('drinks')
+    submit: =>
+      if @.errors().length is 0
+        Meteor.call 'drinks_insert', ko.toJS(@), (err, data) ->
+          Router.navigate('drinks', {trigger: true})
+      else
+        @.errors.showAllMessages()
 
-    model.errors = ko.validation.group(model)
-    ko.applyBindings(model)
+  ko.applyBindings(new Model)
 
 Template.drinks_edit.rendered = -> 
   ko.validation.configure
@@ -43,21 +53,40 @@ Template.drinks_edit.rendered = ->
     parseInputAttributes: true
     messageTemplate: null
 
-  # populate the data into the form when rendered 
-  # won't keep in sync - in order to allow non-interrupted typing
-  Meteor.call 'drink', Session.get('id'), (err, data) ->
-    model =  
-      name: ko.observable(data.drink.name).extend({required: true, maxLength: 20})
-      size: ko.observable(data.drink.size).extend({required: true})
-      price: ko.observable(data.drink.price).extend({required: true, max: 20})
-      sizes: ko.observableArray(data.sizes.data)
+    class Model  
+      constructor: ->
+        @drink = ko.meteor.findOne(Drinks, {_id: Session.get('id')})
+        @name = ko.observable().extend({required: true, maxLength: 20})
+        @size = ko.observable().extend({required: true})
+        @price = ko.observable().extend({required: true, max: 20})
+        @sizer = ko.meteor.find(Sizes, {})
+        @populate = ko.computed =>
+          data = ko.toJS(@drink)
+          if !data
+            return false
+          else
+            @name(data.name)
+            @size(data.size)
+            @price(data.price)
+            return true
+        , this
+        @sizes = ko.computed =>
+          data = ko.toJS(@sizer)
+          if !data
+            return false
+          else
+            p = []
+            for size in data
+              p.push(size.name)
+            return p
+        , this
+        @errors = ko.validation.group(@)
       back: -> window.Back('drinks')
-      submit: ->
-        if model.errors().length is 0
+      submit: =>
+        if @.errors().length is 0
           Meteor.call 'drinks_update', Session.get('id'), ko.toJS(@), (err, data) ->
             Router.navigate('drinks', {trigger: true})
         else
-          model.errors.showAllMessages()
+          @.errors.showAllMessages()
 
-    model.errors = ko.validation.group(model)
-    ko.applyBindings(model)
+    ko.applyBindings(new Model)

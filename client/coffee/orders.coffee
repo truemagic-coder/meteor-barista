@@ -24,15 +24,7 @@ Template.order.total = -> accounting.formatMoney(@.total)
 Template.orders_index.orders = -> Orders.find()
 
 # selects
-Template.orders_main.baristas = -> 
-  bar = Baristas.findOne({key: 1})
-  data = bar and bar.data
-  if !data
-  else
-    options = []
-    for x in data
-      options.push({name: x})
-    return options
+Template.orders_main.baristas = -> Baristas.find()
 Template.orders_main.statuses = -> 
   stat = Statuses.findOne({key: 1})
   data = stat and stat.data
@@ -63,20 +55,30 @@ Template.orders_new.rendered = ->
       parseInputAttributes: true
       messageTemplate: null
 
-  Meteor.call 'baristas', (err, data) ->
-    model =  
-      barista: ko.observable().extend({required: true})
-      baristas: ko.observableArray(data.data)
-      back: -> window.Back('orders')
-      submit: ->
-        if model.errors().length is 0
-          Meteor.call 'orders_insert', ko.toJS(@), (err, data) ->
-            Router.navigate("orders/#{data}/edit", {trigger: true})
+  class Model 
+    constructor: -> 
+      @barista = ko.observable().extend({required: true}) 
+      @barstars = ko.meteor.find(Baristas, {})
+      @baristas = ko.computed =>
+        data = ko.toJS(@barstars)
+        if !data
+          return false
         else
-          model.errors.showAllMessages()
+          p = []
+          for size in data
+            p.push(size.name)
+          return p
+      , this
+      @errors = ko.validation.group(@)
+    back: -> window.Back('orders')
+    submit: =>
+      if @.errors().length is 0
+        Meteor.call 'orders_insert', ko.toJS(@), (err, data) ->
+          Router.navigate("orders/#{data}/edit", {trigger: true})
+      else
+        @.errors.showAllMessages()
 
-    model.errors = ko.validation.group(model)
-    ko.applyBindings(model)
+  ko.applyBindings(new Model)
 
 # dynamic values
 Template.orders_edit.totaled = ->
