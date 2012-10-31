@@ -13,6 +13,8 @@
 ## Notes: 
   * Meteor.js version is real-time 
   * When you update foods or drinks - the updated versions will only be available to products that have not been added to an order yet
+  * Knockout works great for static forms and validations (like drinks and foods) - see preko branch vs. master
+  * For complex UI - Meteor templates behave well and are straightforward rather than using Knockout (like orders) - see badko branch (broken) vs. master
 
 ## Demo:
   http://barista.meteor.com 
@@ -45,7 +47,6 @@
       * Decent documentation
   
     Cons:
-      * Validations are not built-in
-      * Client-side REST requires manually writing Backbone routes - requires a 3rd party library (Reactive Router)
-      * Writing HTML in Handlebars - should support Jade 
-      * Re-renders the entire template - should support HTML data-bindings
+      * Validations are not built-in - overcome with 3rd party library (Knockout)
+      * Client-side REST requires manually writing Backbone routes - using 3rd party library (Reactive Router)
+      * Writing HTML in Handlebars - should support Jade and native data-bindings
