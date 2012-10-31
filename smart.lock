@@ -35,8 +35,8 @@
       },
       "knockout": {
         "git": "https://github.com/bevanhunt/meteor-knockout.git",
-        "tag": "v0.2.2",
-        "commit": "914f7d2c3eac96747d344fdd4fed8b05dbff807a"
+        "tag": "v0.2.7",
+        "commit": "0488cc72208cdd0b96d7ea04c061a10e6e701d4a"
       },
       "deps-extensions": {
         "git": "https://github.com/tmeasday/meteor-deps-extensions.git",
