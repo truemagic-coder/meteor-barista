@@ -24,20 +24,36 @@ Template.order.total = -> accounting.formatMoney(@.total)
 Template.orders_index.orders = -> Orders.find()
 
 # selects
+Template.orders_main.baristas = -> 
+  bar = Baristas.findOne({key: 1})
+  data = bar and bar.data
+  if !data
+  else
+    options = []
+    for x in data
+      options.push({name: x})
+    return options
+Template.orders_main.statuses = -> 
+  stat = Statuses.findOne({key: 1})
+  data = stat and stat.data
+  if !data
+  else
+    options = []
+    for x in data
+      options.push({name: x})
+    return options
 Template.orders_edit.products = -> Products.find({order_id: Session.get('id')})
 
+# on re-render - use Mini-Mongo with short-circuting to re-paint both selects in-sync
+# using a server method with a callback - re-paints out of sync
 Template.orders_main.rendered = -> 
-  baristas = Baristas.findOne({key: 1})
-  statuses = Statuses.findOne({key: 1})
-  bar_data = baristas and baristas.data
-  sta_data = statuses and statuses.data
-  if !bar_data and !sta_data
+  order = Orders.findOne({_id: Session.get('id')})
+  barista = order and order.barista
+  status = order and order.status
+  if !barista and !status
   else
-    model =  
-      order: ko.meteor.findOne(Orders, {_id: Session.get('id')})
-      baristas: ko.observableArray(bar_data)
-      statuses: ko.observableArray(sta_data)
-    ko.applyBindings(model)
+    $("#barista option[value='" + barista + "']").attr('selected', 'selected')
+    $("#status option[value='" + status + "']").attr('selected', 'selected')
 
 Template.orders_new.rendered = -> 
   ko.validation.configure
@@ -63,21 +79,20 @@ Template.orders_new.rendered = ->
     ko.applyBindings(model)
 
 # dynamic values
-# use Mini-Mongo rather than Server Methods - as have to return values in scope
 Template.orders_edit.totaled = ->
   order = Orders.findOne({_id: Session.get('id')})
-  total = order && order.total
+  total = order and order.total
   if total > 0 then return true else return false
 Template.orders_total.subtotal = -> 
   order = Orders.findOne({_id: Session.get('id')})
-  subtotal = order && order.subtotal
+  subtotal = order and order.subtotal
   accounting.formatMoney(subtotal)
 Template.orders_total.hst = -> 
   order = Orders.findOne({_id: Session.get('id')})
-  hst = order && order.hst
+  hst = order and order.hst
   accounting.formatMoney(hst)
 Template.orders_total.total = -> 
   order = Orders.findOne({_id: Session.get('id')})
-  total = order && order.total
+  total = order and order.total
   accounting.formatMoney(total)
 

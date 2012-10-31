@@ -79,7 +79,15 @@ Template.product.total = -> if @.total > 0 then return true else return false
 Template.product_total.mods = -> Mods.find({product_id: @._id})
 Template.product_total.modifications = -> Modifications.find({type: @.type})
 Template.product_total.total = -> accounting.formatMoney(@.total)
-Template.product.types = -> Types.find()
+Template.product.types = -> 
+  type = Types.findOne({key: 1})
+  data = type and type.data
+  if !data
+  else
+    options = []
+    for x in data
+      options.push({name: x})
+    return options
 Template.product_drink.sizes = -> 
   # only use unique values
   sizes = []

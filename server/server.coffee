@@ -102,13 +102,13 @@ Meteor.startup ->
         type: mod.type
   if Types.find().count() is 0
     types = ["Drink", "Food"]
-    Types.insert(types)
+    Types.insert(key: 1, data: types)
   if Sizes.find().count() is 0
     sizes = ["Small", "Medium", "Large"]
     Sizes.insert(key: 1, data: sizes)
   if Baristas.find().count() is 0
-    baristas = ["Kim", "Heather", "Janice", "Paul"]
-    Baristas.insert(key: 1, data: baristas)
+    barstars = ["Kim", "Heather", "Janice", "Paul"]
+    Baristas.insert(key: 1, data: barstars)
   if Statuses.find().count() is 0
     statuses = ["Waiting", "Making", "Done"]
     Statuses.insert(key: 1, data: statuses)
