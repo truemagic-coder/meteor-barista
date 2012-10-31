@@ -45,9 +45,9 @@ Template.foods_edit.rendered = ->
 
   class Model   
     constructor: ->
-      @name = ko.observable(data.name).extend({required: true, maxLength: 20})
-      @pgram = ko.observable(data.pgram).extend({required: true, max: 1})
-      @price = ko.observable(data.price).extend({required: true, max: 20})
+      @name = ko.observable().extend({required: true, maxLength: 20})
+      @pgram = ko.observable().extend({required: true, max: 1})
+      @price = ko.observable().extend({required: true, max: 20})
       @food = ko.meteor.findOne(Foods, {_id: Session.get('id')})
       @populate = ko.computed =>
         data = ko.toJS(@food)
