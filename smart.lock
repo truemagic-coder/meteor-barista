@@ -30,8 +30,8 @@
       },
       "sugar": {
         "git": "https://github.com/bevanhunt/meteor-sugar.git",
-        "tag": "v0.0.7",
-        "commit": "4ac02c81d48c64509b1c22e556a1161470b4c800"
+        "tag": "v0.0.8",
+        "commit": "43c16120c6a92907d52ca10644e11f6c373eb4da"
       },
       "knockout": {
         "git": "https://github.com/bevanhunt/meteor-knockout.git",
