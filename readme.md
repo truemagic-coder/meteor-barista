@@ -1,6 +1,6 @@
 # Barista - CoffeeShop Ordering System 
 ## How to use:
-  1. npm install meteorite (if not already installed)
+  1. npm install -g meteorite (if not already installed)
   2. git clone https://github.com/bevanhunt/meteor-barista.git
   3. cd meteor-barista
   4. mrt
