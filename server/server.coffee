@@ -80,14 +80,14 @@ Meteor.startup ->
     # use underscores rather than spaces 
     # Handlebars breaks the value at the space when inserting into an option
     mods = [
-      {name: "Shot_of_Expresso", type: "Drink"}
+      {name: "Shot of Expresso", type: "Drink"}
       {name: "Grill", type: "Food"}
       {name: "Heat", type: "Food"}
-      {name: "Low_Fat", type: "Drink"}
-      {name: "Soy_Milk", type: "Drink"}
-      {name: "Add_Cheese", type: "Food"}
-      {name: "Add_Bacon", type: "Food"}
-      {name: "Extra_Cream", type: "Drink"}
+      {name: "Low Fat", type: "Drink"}
+      {name: "Soy Milk", type: "Drink"}
+      {name: "Add Cheese", type: "Food"}
+      {name: "Add Bacon", type: "Food"}
+      {name: "Extra Cream", type: "Drink"}
     ]
     for mod in mods
       Modifications.insert
