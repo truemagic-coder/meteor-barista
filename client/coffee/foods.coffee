@@ -49,6 +49,7 @@ Template.foods_edit.rendered = ->
       @pgram = ko.observable().extend({required: true, max: 1})
       @price = ko.observable().extend({required: true, max: 20})
       @food = ko.meteor.findOne(Foods, {_id: Session.get('id')})
+      # populate the existing values into the form
       @populate = ko.computed =>
         data = ko.toJS(@food)
         if !data

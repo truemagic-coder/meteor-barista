@@ -24,6 +24,7 @@ Template.drinks_new.rendered = ->
       @size = ko.observable().extend({required: true})
       @price = ko.observable().extend({required: true, max: 20})
       @sizer = ko.meteor.find(Sizes, {})
+      # build dynamic dropdown list
       @sizes = ko.computed =>
         data = ko.toJS(@sizer)
         if !data
@@ -60,6 +61,7 @@ Template.drinks_edit.rendered = ->
         @size = ko.observable().extend({required: true})
         @price = ko.observable().extend({required: true, max: 20})
         @sizer = ko.meteor.find(Sizes, {})
+        # populate the existing values into the form
         @populate = ko.computed =>
           data = ko.toJS(@drink)
           if !data
@@ -70,6 +72,7 @@ Template.drinks_edit.rendered = ->
             @price(data.price)
             return true
         , this
+        # build dynamic dropdown list
         @sizes = ko.computed =>
           data = ko.toJS(@sizer)
           if !data
