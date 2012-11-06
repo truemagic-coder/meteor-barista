@@ -26,9 +26,7 @@
   Batman-Rails:
     
     Pros:
-      * HTML data-bindings
-      * Validations built-in
-      * HTML templating language - HAML (optional)
+      * HTML templating language - HAML (optional - Rails feature)
       * Model relationship keywords (rather than having to set MongoDB keys manually)
 
     Cons: 
@@ -46,5 +44,4 @@
       * Decent documentation
   
     Cons:
-      * Validations are not built-in - overcome with 3rd party library (Knockout)
-      * Writing HTML in Handlebars - should support Jade and native data-bindings
+      * Writing HTML in Handlebars - should support Jade in Handlebars
