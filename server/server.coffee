@@ -77,8 +77,6 @@ Meteor.startup ->
   if OrderNumber.find().count() is 0
     OrderNumber.insert({num: 1, number: 1})
   if Modifications.find().count() is 0
-    # use underscores rather than spaces 
-    # Handlebars breaks the value at the space when inserting into an option
     mods = [
       {name: "Shot of Expresso", type: "Drink"}
       {name: "Grill", type: "Food"}
@@ -90,27 +88,16 @@ Meteor.startup ->
       {name: "Extra Cream", type: "Drink"}
     ]
     for mod in mods
-      Modifications.insert
-        name: mod.name
-        type: mod.type
+      Modifications.insert({name: mod.name, type: mod.type})
   if Types.find().count() is 0
     types = ["Drink", "Food"]
     Types.insert({key: 1, data: types})
   if Sizes.find().count() is 0
-    sizes = [
-      "Small"
-      "Medium"
-      "Large"
-    ]
+    sizes = ["Small", "Medium", "Large"]
     for size in sizes
       Sizes.insert({name: size})
   if Baristas.find().count() is 0
-    baristas = [
-        "Kim"
-        "Heather" 
-        "Janice" 
-        "Paul"
-    ]
+    baristas = ["Kim", "Heather", "Janice", "Paul"]
     for barista in baristas
       Baristas.insert({name: barista})
   if Statuses.find().count() is 0
