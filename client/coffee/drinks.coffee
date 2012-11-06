@@ -1,8 +1,8 @@
 # events
 Template.drinks_index.events
-  'click .edit': -> Router.drinks_edit_path(@)
+  'click .edit': -> Meteor.Router.to("/drinks/#{@._id}/edit")
   'click .delete': -> Drinks.remove({_id: @._id})
-  'click #new': -> Router.navigate('drinks/new', {trigger: true})
+  'click #new': -> Meteor.Router.to('/drinks/new')
 
 # lists
 Template.drinks_index.drinks = -> Drinks.find()
@@ -35,11 +35,11 @@ Template.drinks_new.rendered = ->
           return p
       , this
       @errors = ko.validation.group(@)
-    back: -> window.Back('drinks')
+    back: -> Meteor.Router.to('/drinks')
     submit: =>
       if @.errors().length is 0
         Meteor.call 'drinks_insert', ko.toJS(@), (err, data) ->
-          Router.navigate('drinks', {trigger: true})
+          Meteor.Router.to('/drinks')
       else
         @.errors.showAllMessages()
 
@@ -81,11 +81,11 @@ Template.drinks_edit.rendered = ->
             return p
         , this
         @errors = ko.validation.group(@)
-      back: -> window.Back('drinks')
+      back: -> Meteor.Router.to('/drinks')
       submit: =>
         if @.errors().length is 0
           Meteor.call 'drinks_update', Session.get('id'), ko.toJS(@), (err, data) ->
-            Router.navigate('drinks', {trigger: true})
+            Meteor.Router.to('/drinks')
         else
           @.errors.showAllMessages()
 

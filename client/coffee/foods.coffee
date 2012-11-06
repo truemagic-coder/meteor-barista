@@ -1,8 +1,8 @@
 # events
 Template.foods_index.events
-  'click .edit': -> Router.foods_edit_path(@)
+  'click .edit': -> Meteor.Router.to("/foods/#{@._id}/edit")
   'click .delete': -> Foods.remove({_id: @._id})
-  'click #new': -> Router.navigate('foods/new', {trigger: true})
+  'click #new': -> Meteor.Router.to('/foods/new')
         
 # lists
 Template.foods_index.foods = -> Foods.find()
@@ -25,11 +25,11 @@ Template.foods_new.rendered = ->
       @pgram = ko.observable().extend({required: true, max: 1})
       @price = ko.observable().extend({required: true, max: 20})
       @errors = ko.validation.group(@)
-    back: -> window.Back('foods')
+    back: -> Meteor.Router.to('/foods')
     submit: =>
       if @.errors().length is 0
         Meteor.call 'foods_insert', ko.toJS(@), (err, data) ->
-          Router.navigate('foods', {trigger: true})
+          Meteor.Router.to('/foods')
       else
         @.errors.showAllMessages()
 
@@ -60,11 +60,11 @@ Template.foods_edit.rendered = ->
           return true
       , this
       @errors = ko.validation.group(@)
-    back: -> window.Back('foods')
+    back: -> Meteor.Router.to('/foods')
     submit: =>
       if @.errors().length is 0
         Meteor.call 'foods_update', Session.get('id'), ko.toJS(@), (err, data) ->
-          Router.navigate('foods', {trigger: true})
+          Meteor.Router.to('/foods')
       else
         @.errors.showAllMessages()
 
