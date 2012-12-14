@@ -1,8 +1,7 @@
 {
   "meteor": {
     "git": "https://github.com/meteor/meteor.git",
-    "branch": "master",
-    "commit": "68dafc94c5f1eb6cf2350ee74e9f65130f665bc5"
+    "branch": "master"
   },
   "packages": {
     "router": {},
