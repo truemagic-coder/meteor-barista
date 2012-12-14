@@ -15,8 +15,8 @@
     "packages": {
       "router": {
         "git": "https://github.com/tmeasday/meteor-router.git",
-        "tag": "v0.2.2",
-        "commit": "b1e205f3cbde62ae3c91f06429d681580d9aa322"
+        "tag": "v0.3.4",
+        "commit": "8f0d5303de5b93771e91f21f818be27358c2fb30"
       },
       "bootstrap.less": {
         "git": "https://github.com/lvbreda/meteor_bootstrapless",
@@ -35,8 +35,8 @@
       },
       "knockout": {
         "git": "https://github.com/bevanhunt/meteor-knockout.git",
-        "tag": "v0.2.9",
-        "commit": "e04ee197333815d199850d1418062a80b106a04f"
+        "tag": "v0.3.0",
+        "commit": "47d046d3710c78e94ee3ffddc7d1d6d385b1524b"
       },
       "page-js": {
         "git": "https://github.com/tmeasday/meteor-page-js.git",

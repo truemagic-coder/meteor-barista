@@ -2,33 +2,33 @@
 # note: e is event and t is template
 # find is Template find
 Template.product.events
-  'change #type': (e, t) ->
-    n = t.find('#type')
+  'change .type': (e, t) ->
+    n = t.find('.type')
     val = n.options[n.selectedIndex].value
     if @.type is 'Drink'
       Products.update({_id: @._id}, {$set: {type: val, name: "", size: "", units: 0}})
     if @.type is 'Food'
       Products.update({_id: @._id}, {$set: {type: val, name: "", units: 0}})
-  'change #name': (e, t) ->
-    n = t.find('#name')
+  'change .name': (e, t) ->
+    n = t.find('.name')
     val = n.options[n.selectedIndex].value
     if @.type is 'Drink'
       Products.update({_id: @._id}, {$set: {name: val, size: "", units: 0}})
     if @.type is 'Food'
       food = Foods.findOne({name: val})
       Products.update({_id: @._id}, {$set: {name: val, price: food.price, pgram: food.pgram, units: 0}})
-  'change #size': (e, t) ->
-    n = t.find('#size')
+  'change .size': (e, t) ->
+    n = t.find('.size')
     val = n.options[n.selectedIndex].value
     drink = Drinks.findOne({name: @.name, size: val})
     Products.update({_id: @._id}, {$set: {size: val, price: drink.price, units: 0, total: 0}})
-  'change #gram': (e, t) ->
-    n = t.find('#gram')
+  'change .gram': (e, t) ->
+    n = t.find('.gram')
     val = n.value
     food = Foods.findOne({name: @.name})
     Products.update({_id: @._id}, {$set: {grams: val, units: 0, total: 0}})
-  'change #unit': (e, t) ->
-    n = t.find('#unit')
+  'change .unit': (e, t) ->
+    n = t.find('.unit')
     val = n.value
     if @.type is 'Drink'
       total = @.price * val
@@ -44,7 +44,7 @@ Template.product.events
     hst = subtotal * tax
     total = subtotal * (1 + tax)
     Orders.update({_id: Session.get('id')}, {$set: {subtotal: subtotal, hst: hst, total: total}})
-  'click #destroy': -> 
+  'click .destroy': -> 
     Products.remove({_id: @._id})
     # calc total
     products = Products.find({order_id: Session.get('id')})
@@ -56,12 +56,12 @@ Template.product.events
     total = subtotal * (1 + tax)
     Orders.update({_id: Session.get('id')}, {$set: {subtotal: subtotal, hst: hst, total: total}})
 Template.product_total.events
-  'click #add': (e, t) ->
+  'click .add': (e, t) ->
     s = t.find('#mod')
     mod = Modifications.findOne({name: s.value})
     Mods.insert({name: mod.name, type: mod.type, product_id: @._id})
 Template.product_mods.events
-  'click #mod_destroy': ->
+  'click .mod_destroy': ->
     Mods.remove({_id: @._id})
 
 # formatters
@@ -122,7 +122,7 @@ Template.product.rendered = ->
   product = Products.findOne({_id: @.data._id})
   # loop through options and match then set the selected index
   if product.type 
-    t = @.find('#type')
+    t = @.find('.type')
     count = 0
     for x in t.options
       if x.value is product.type
@@ -130,7 +130,7 @@ Template.product.rendered = ->
       count++
     if !product.name
     else
-      n = @.find('#name')
+      n = @.find('.name')
       count = 0
       matched = false
       for x in n.options
@@ -149,11 +149,11 @@ Template.product.rendered = ->
           n.selectedIndex = n.options.length - 1
       if !product.grams
       else
-        u = @.find('#gram')
+        u = @.find('.gram')
         u.value = product.grams
       if !product.size
       else
-        s = @.find('#size')
+        s = @.find('.size')
         count = 0
         matched = false
         for x in s.options
@@ -171,5 +171,5 @@ Template.product.rendered = ->
             s.add(option, null)
             s.selectedIndex = s.options.length - 1
     if product.units > 0
-        u = @.find('#unit')
+        u = @.find('.unit')
         u.value = product.units 

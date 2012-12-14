@@ -2,7 +2,7 @@
   <td class="ir"> 
     <label class="lbr_100">Name:</label>
     <span class="mt_5"></span>
-    <select id="name" class="w_230"> 
+    <select class="name w_230"> 
       {{#each names}}
         {{> dropdown}}
       {{/each}}
@@ -10,7 +10,7 @@
   <td class="ir"> 
     <label class="lbr_100">Size:</label>
     <span class="mt_5"></span>
-    <select id="size" class="w_100"> 
+    <select class="size w_100"> 
       {{#each sizes}}
         {{> size}}
       {{/each}}
@@ -19,9 +19,9 @@
   <td class="ir">
     <label class="lbr_100">Units:</label>
     <span class="mt_5"></span>
-    <input id="unit" class="irq"> 
+    <input class="unit irq"> 
     <span style='padding-left: 15px;'>
-      <a id="destroy">
+      <a class="destroy">
         <i class='icon-remove-sign'></i>
       </a>
     </span>
