@@ -1,13 +1,10 @@
 {
-  "meteor": {
-    "git": "https://github.com/meteor/meteor.git",
-    "branch": "master"
-  },
+  "meteor": {},
   "packages": {
-    "router": {},
-    "bootstrap.less": {},
     "accounting": {},
     "sugar": {},
-    "knockout": {}
+    "knockout": {},
+    "iron-router": {},
+    "iron-router-output": {}
   }
 }

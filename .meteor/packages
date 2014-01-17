@@ -5,10 +5,10 @@
 
 coffeescript
 jquery
-router
-bootstrap.less
 accounting
 insecure
-madewith
 sugar
 knockout
+iron-router
+standard-app-packages
+iron-router-output

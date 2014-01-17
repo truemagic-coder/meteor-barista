@@ -1,28 +1,14 @@
 {
-  "meteor": {
-    "git": "https://github.com/meteor/meteor.git",
-    "branch": "master",
-    "commit": "68dafc94c5f1eb6cf2350ee74e9f65130f665bc5"
-  },
+  "meteor": {},
   "dependencies": {
     "basePackages": {
-      "router": {},
-      "bootstrap.less": {},
       "accounting": {},
       "sugar": {},
-      "knockout": {}
+      "knockout": {},
+      "iron-router": {},
+      "iron-router-output": {}
     },
     "packages": {
-      "router": {
-        "git": "https://github.com/tmeasday/meteor-router.git",
-        "tag": "v0.2.2",
-        "commit": "b1e205f3cbde62ae3c91f06429d681580d9aa322"
-      },
-      "bootstrap.less": {
-        "git": "https://github.com/lvbreda/meteor_bootstrapless",
-        "tag": "v2.1.0",
-        "commit": "05dab8a4f07ef0f457fd4af4ea897c9d72129a2b"
-      },
       "accounting": {
         "git": "https://github.com/IainShigeoka/meteor-accounting.git",
         "tag": "v0.3.2.3",
@@ -30,18 +16,23 @@
       },
       "sugar": {
         "git": "https://github.com/bevanhunt/meteor-sugar.git",
-        "tag": "v0.0.9",
-        "commit": "751a4465e0a7d7e4e800e794ca1e6a449e15e63d"
+        "tag": "v0.1.6",
+        "commit": "8973ed7e027e260a572571d02d0f4a428ca866f9"
       },
       "knockout": {
         "git": "https://github.com/bevanhunt/meteor-knockout.git",
-        "tag": "v0.2.9",
-        "commit": "e04ee197333815d199850d1418062a80b106a04f"
+        "tag": "v0.3.0",
+        "commit": "47d046d3710c78e94ee3ffddc7d1d6d385b1524b"
       },
-      "page-js": {
-        "git": "https://github.com/tmeasday/meteor-page-js.git",
-        "tag": "v1.3.1",
-        "commit": "ee0b651869928abe50b5d06d7f32ccd2e657883a"
+      "iron-router": {
+        "git": "https://github.com/EventedMind/iron-router.git",
+        "tag": "v0.6.2",
+        "commit": "ce56e58b45624dce992490f3a1c10f10d3948bae"
+      },
+      "iron-router-output": {
+        "git": "https://github.com/XpressiveCode/iron-router-output.git",
+        "tag": "v0.1.4",
+        "commit": "d7436f1266257c471f60c78d6fd0b07088e28845"
       }
     }
   }
