@@ -13,8 +13,6 @@
 ## Notes: 
   * Meteor.js version is real-time 
   * When you update foods or drinks - the updated versions will only be available to products that have not been added to an order yet
-  * Knockout works great for static forms and validations (like drinks and foods) - see preko branch vs. master
-  * For complex UI - Meteor templates behave well and are straightforward rather than using Knockout (like orders) - see badko branch (broken) vs. master
 
 ## Demo:
   http://barista.meteor.com 
@@ -26,11 +24,9 @@
   Batman-Rails:
     
     Pros:
-      * HTML templating language - HAML (optional - Rails feature)
       * Model relationship keywords (rather than having to set MongoDB keys manually)
 
     Cons: 
-      * Bad documentation 
       * 3 specified model schemas (duplication) = ActiveModel, JSON Serializer, and Batman Models
       * Real-time is not built-in (no real-time in Batman-Barita)
       * Manually refreshing browser is required to see app changes
@@ -42,6 +38,3 @@
       * Real-time built-in 
       * Auto-refreshes browser on app changes 
       * Decent documentation
-  
-    Cons:
-      * Writing HTML in Handlebars - should support Jade in Handlebars
