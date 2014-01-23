@@ -1,12 +1,16 @@
 <template name="orders_new">
   <h1>New Order</h1>
-  <form name='form' class='form-horizontal'>
+  <form name='form' class='form-horizontal' role='form'>
     <fieldset>
-      <label class='lbl_50'>Barista:</label>
-      <div class='mt_5'></div>
-      <select id='barista' data-bind="options: baristas, value: barista, optionsCaption: 'Choose...'"></select>
-      <div class='mt_20'></div>
-      <div id="create" class='btn btn-primary' data-bind='click: submit'>Create Order</div>
+     <div class="form-group">
+        <label class='lbl_50'>Barista:</label>
+        <div class='mt_5'></div>
+        <select id='barista' data-bind="options: baristas, value: barista, optionsCaption: 'Choose...'"></select>
+      </div>
+      <div class="form-group">
+        <div class='mt_20'></div>
+        <div id="create" class='btn btn-primary' data-bind='click: submit'>Create Order</div>
+      </div>
     </fieldset>
   </form>
   <div class="mt_30">

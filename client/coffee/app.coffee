@@ -59,22 +59,37 @@ Meteor.startup ->
       path: '/drinks/new'
       template: 'drinks_new'
       layoutTemplate: 'layout'
+    @.route 'drinks_edit',
+      path: '/drinks/:id/edit'
+      template: 'drinks_edit'
+      layoutTemplate: 'layout'
+      data: ->
+        @.params.id
+      before: ->
+        Session.set('id', @.getData())
+    @.route 'orders',
+      path: '/orders'
+      template: 'orders_index'
+      layoutTemplate: 'layout'
+    @.route 'orders_new',
+      path: '/orders/new'
+      template: 'orders_new'
+      layoutTemplate: 'layout'
+    @.route 'orders_edit',
+      path: '/orders/:id/edit'
+      template: 'orders_edit'
+      layoutTemplate: 'layout'
+      data: ->
+        @.params.id
+      before: ->
+        Session.set('id', @.getData())
   # go to /_routes to view routes
   Router.configure
     routesUri: '_routes'
 
-  # '/drinks/:id/edit': (params) ->
-  #   Session.set('id', params[0])
-  #   'drinks_edit'
-  # '/orders': 'orders_index'
-  # '/orders/new': 'orders_new'
-  # '/orders/:id/edit': (params) ->
-  #   Session.set('id', params[0])
-  #   'orders_edit'
-
 # create links on the layout to access the various index pages 
 Template.layout.events
-  'click #logo': -> Router.go('logos')
+  'click #logo': -> Router.go('home')
   'click #foods': -> Router.go('foods')
   'click #drinks': -> Router.go('drinks')
   'click #orders': -> Router.go('orders')

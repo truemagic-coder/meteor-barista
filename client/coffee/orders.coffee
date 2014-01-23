@@ -2,9 +2,9 @@
 # note: e is event and t is template
 # find is Template find
 Template.orders_index.events
-  'click .edit': -> Meteor.Router.to("/orders/#{@._id}/edit")
+  'click .edit': -> Router.go("orders_edit", {id: @._id})
   'click .delete': -> Orders.remove({_id: @._id})
-  'click #new': -> Meteor.Router.to('/orders/new')
+  'click #new': -> Router.go('orders_new')
 
 Template.orders_edit.events
   'change #barista': (e, t) -> 
@@ -14,7 +14,7 @@ Template.orders_edit.events
     status = $('#status option:selected').val()
     Orders.update({_id: Session.get('id')}, {$set: {status: status}})
   'click #add': -> Meteor.call 'products_insert', Session.get('id')
-  'click #back': -> Meteor.Router.to('/orders')
+  'click #back': -> Router.go('orders')
 
 # formatters
 Template.order.subtotal = -> accounting.formatMoney(@.subtotal)
@@ -70,11 +70,11 @@ Template.orders_new.rendered = ->
           return p
       , this
       @errors = ko.validation.group(@)
-    back: -> Meteor.Router.to('/orders')
+    back: -> Router.go('orders')
     submit: =>
       if @.errors().length is 0
         Meteor.call 'orders_insert', ko.toJS(@), (err, data) ->
-          Meteor.Router.to("/orders/#{data}/edit")
+          Router.go("orders_edit", {id: data})
       else
         @.errors.showAllMessages()
 

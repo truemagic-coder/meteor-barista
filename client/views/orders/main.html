@@ -1,20 +1,24 @@
 <template name="orders_main">  
-  <form name='form' class='form-horizontal'>
+  <form name='form' class='form-horizontal' role='form'>
     <fieldset>
-      <label class='lbl_50'>Barista:</label>
-      <div class='mt_5'></div>
-      <select name='barista' id='barista'>
-        {{#each baristas}}
-          {{> dropdown}}
-        {{/each}}
-      </select>
-      <label class='lbl_50'>Status:</label>
-      <div class='mt_5'></div>
-      <select name='status' id='status'>
-        {{#each statuses}}
-          {{> dropdown}}
-        {{/each}}
-      </select>
+      <div class="form-group">
+        <label class='lbl_50'>Barista:</label>
+        <div class='mt_5'></div>
+        <select name='barista' id='barista'>
+          {{#each baristas}}
+            {{> dropdown}}
+          {{/each}}
+        </select>
+      </div>
+      <div class="form-group">
+        <label class='lbl_50'>Status:</label>
+        <div class='mt_5'></div>
+        <select name='status' id='status'>
+          {{#each statuses}}
+            {{> dropdown}}
+          {{/each}}
+        </select>
+      </div>
     </fieldset>
   </form>
 </template>
