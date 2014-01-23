@@ -1,28 +1,29 @@
 <template name="layout">
-  <div id="container" class="container">
-    <table style="margin-top:20px; margin-bottom: 30px;">
-      <tr>
-        <td id="logobak"><a id="logo" href="javascript:{}">&nbsp;</a></td>
-        <td id="header">Barista</td>
-      </tr>
-    </table>
-    <div class="navbar">
-      <div class="navbar-inner">
-        <ul class="nav">
-          <li>
-            <a id="orders" href="javascript:{}">Orders</a>
-          </li>
-          <li>
-            <a id="foods" href="javascript:{}">Foods</a>
-          </li>
-          <li>
-            <a id="drinks" href="javascript:{}">Drinks</a>
-          </li>
-        </ul>
+  <head>
+    <title>Barista</title>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <table style="margin-top:20px; margin-bottom: 30px;">
+        <tr>
+          <td id="logobak"><a id="logo" href="javascript:{}">&nbsp;</a></td>
+          <td id="header">Barista</td>
+        </tr>
+      </table>
+      <ul class="nav nav-pills">
+        <li>
+          <a id="orders" href="javascript:{}">Orders</a>
+        </li>
+        <li>
+          <a id="foods" href="javascript:{}">Foods</a>
+        </li>
+        <li>
+          <a id="drinks" href="javascript:{}">Drinks</a>
+        </li>
+      </ul>
+      <div style="margin: 0 auto;">
+        {{yield}}
       </div>
-    </div>
-    <div style="margin: 0 auto;">
-      {{renderPage}}
     </div>
   </div>
 </template>

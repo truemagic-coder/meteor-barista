@@ -5,6 +5,7 @@
     "sugar": {},
     "knockout": {},
     "iron-router": {},
-    "iron-router-output": {}
+    "iron-router-output": {},
+    "bootstrap-3": {}
   }
 }

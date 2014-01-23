@@ -5,7 +5,7 @@ Template.orders_index.events
   'click .edit': -> Meteor.Router.to("/orders/#{@._id}/edit")
   'click .delete': -> Orders.remove({_id: @._id})
   'click #new': -> Meteor.Router.to('/orders/new')
-        
+
 Template.orders_edit.events
   'change #barista': (e, t) -> 
     barista = t.find('#barista option:selected').value

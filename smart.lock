@@ -6,7 +6,8 @@
       "sugar": {},
       "knockout": {},
       "iron-router": {},
-      "iron-router-output": {}
+      "iron-router-output": {},
+      "bootstrap-3": {}
     },
     "packages": {
       "accounting": {
@@ -21,8 +22,8 @@
       },
       "knockout": {
         "git": "https://github.com/bevanhunt/meteor-knockout.git",
-        "tag": "v0.3.0",
-        "commit": "47d046d3710c78e94ee3ffddc7d1d6d385b1524b"
+        "tag": "v0.3.1",
+        "commit": "cba4f2abe1a4e4842eee7307f2d261ed2d00f63e"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
@@ -33,6 +34,11 @@
         "git": "https://github.com/XpressiveCode/iron-router-output.git",
         "tag": "v0.1.4",
         "commit": "d7436f1266257c471f60c78d6fd0b07088e28845"
+      },
+      "bootstrap-3": {
+        "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
+        "tag": "v0.3.7",
+        "commit": "5dd0d142c870647b910be80bc777b96f0dd45e5e"
       }
     }
   }

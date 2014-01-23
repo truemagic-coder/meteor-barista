@@ -1,18 +1,26 @@
 <template name="foods_new">
   <h1>New Food</h1>
-  <form name='form' class='form-horizontal'>
+  <form name='form' class='form-horizontal' role='form'>
     <fieldset>
-      <label class='lbl_50'>Name:</label>
-      <div class='mt_5'></div>
-      <input name='name' id='name' data-bind='value: name'>
-      <label class='lbl_150'>Price Per Gram:</label>
-      <div class='mt_5'></div>
-      <input name='pgram' id='pgram' data-bind='value: pgram'>
-      <label class='lbl_150'>Base Price:</label>
-      <div class='mt_5'></div>
-      <input name='price' id='price' data-bind='value: price'>
-      <div class='mt_20'></div>
-      <div class='btn btn-primary' data-bind='click: submit'>Create Food</div>
+      <div class="form-group">
+        <label class='lbl_50'>Name:</label>
+        <div class='mt_5'></div>
+        <input name='name' id='name' data-bind='value: name'>
+      </div>
+      <div class="form-group">
+        <label class='lbl_150'>Price Per Gram:</label>
+        <div class='mt_5'></div>
+        <input name='pgram' id='pgram' data-bind='value: pgram'>
+      </div>
+      <div class="form-group">
+        <label class='lbl_150'>Base Price:</label>
+        <div class='mt_5'></div>
+        <input name='price' id='price' data-bind='value: price'>
+      </div>
+      <div class="form-group">
+        <div class='mt_20'></div>
+        <div class='btn btn-primary' data-bind='click: submit'>Create Food</div>
+      </div>
     </fieldset>
   </form>
   <div class='mt_30'>

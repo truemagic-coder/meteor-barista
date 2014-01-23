@@ -34,27 +34,35 @@ Meteor.startup ->
   Router.map ->
     @.route 'home',
       path: '/'
+      layoutTemplate: 'layout'
     @.route 'foods',
-      path: '/foods'
+      path: '/foods',
       template: 'foods_index'
+      layoutTemplate: 'layout'
     @.route 'foods_new',
       path: '/foods/new'
-      template: 'foods_new'
+      template: 'foods_new',
+      layoutTemplate: 'layout'
     @.route 'foods_edit',
       path: '/foods/:id/edit'
       template: 'foods_edit'
+      layoutTemplate: 'layout'
+      data: ->
+        @.params.id
+      before: ->
+        Session.set('id', @.getData())
     @.route 'drinks',
       path: '/drinks'
       template: 'drinks_index'
-    @.route 'drinks_new'
+      layoutTemplate: 'layout'
+    @.route 'drinks_new',
       path: '/drinks/new'
-      template: 
+      template: 'drinks_new'
+      layoutTemplate: 'layout'
   # go to /_routes to view routes
   Router.configure
     routesUri: '_routes'
 
-  # '/drinks': 'drinks_index'
-  # '/drinks/new': 'drinks_new'
   # '/drinks/:id/edit': (params) ->
   #   Session.set('id', params[0])
   #   'drinks_edit'
