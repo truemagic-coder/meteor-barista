@@ -6,7 +6,6 @@
 coffeescript
 jquery
 accounting
-insecure
 sugar
 knockout
 iron-router

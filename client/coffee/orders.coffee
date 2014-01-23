@@ -3,7 +3,7 @@
 # find is Template find
 Template.orders_index.events
   'click .edit': -> Router.go("orders_edit", {id: @._id})
-  'click .delete': -> Orders.remove({_id: @._id})
+  'click .delete': -> Meteor.call 'orders_remove', @._id
   'click #new': -> Router.go('orders_new')
 
 Template.orders_edit.events

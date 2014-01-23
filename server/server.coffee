@@ -34,6 +34,8 @@ Meteor.publish 'mods', -> Mods.find()
 
 # create server methods - this allows callbacks on the client - useful for navigation
 Meteor.methods
+  'foods_remove': (id) ->
+    Foods.remove({_id: id})
   'foods_insert': (js) -> 
     # save as a number - otherwise it will default to string 
     price = parseFloat(js.price)
@@ -48,6 +50,8 @@ Meteor.methods
     # use sugarjs to capitalize 
     name = js.name.capitalize()
     Foods.update({_id: id}, {$set: {name: name, pgram: pgram, price: price}})
+  'drinks_remove': (id) ->
+    Drinks.remove({_id: id})
   'drinks_insert': (js) -> 
     # save as a number - otherwise it will default to string 
     price = parseFloat(js.price)
@@ -62,6 +66,8 @@ Meteor.methods
     # use sugarjs to capitalize 
     name = js.name.capitalize()
     Drinks.update({_id: id}, {$set: {name: name, size: size, price: price}})
+  'orders_remove': (id) ->
+    Orders.remove({_id: id})
   'orders_insert': (js) -> 
     # increment by 1 on insert (auto-increment)
     number = OrderNumber.findOne({num: 1}).number

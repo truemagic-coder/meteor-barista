@@ -1,7 +1,7 @@
 # events
 Template.foods_index.events
   'click .edit': -> Router.go('foods_edit', {id: @._id})
-  'click .delete': -> Foods.remove({_id: @._id})
+  'click .delete': -> Meteor.call 'foods_remove', @._id
   'click #new': -> Router.go('foods_new')
 
 # lists
