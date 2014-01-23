@@ -45,7 +45,7 @@ Template.product.events
     total = subtotal * (1 + tax)
     Orders.update({_id: Session.get('id')}, {$set: {subtotal: subtotal, hst: hst, total: total}})
   'click .destroy': -> 
-    Products.remove({_id: @._id})
+    Meteor.call 'products_remove', @._id
     # calc total
     products = Products.find({order_id: Session.get('id')})
     subtotal = 0
@@ -59,10 +59,10 @@ Template.product_total.events
   'click .add': (e, t) ->
     s = t.find('#mod')
     mod = Modifications.findOne({name: s.value})
-    Mods.insert({name: mod.name, type: mod.type, product_id: @._id})
+    Meteor.call 'mods_insert', mod.name, mod.type, @._id
 Template.product_mods.events
   'click .mod_destroy': ->
-    Mods.remove({_id: @._id})
+    Meteor.call 'mods_remove', @._id
 
 # formatters
 # replace the underscores with spaces for the display values 

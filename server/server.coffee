@@ -1,4 +1,6 @@
 # create pubs 
+# create ok for allow
+ok = -> true
 # foods
 Foods = new Meteor.Collection('foods')
 Meteor.publish 'foods', -> Foods.find()
@@ -14,9 +16,13 @@ Meteor.publish 'sizes', -> Sizes.find()
 # orders
 Orders = new Meteor.Collection('orders')
 Meteor.publish 'orders', -> Orders.find()
+Orders.allow
+  update: ok
 # products
 Products = new Meteor.Collection('products')
 Meteor.publish 'products', -> Products.find()
+Products.allow
+  update: ok
 # baristas
 Baristas = new Meteor.Collection('baristas')
 Meteor.publish 'baristas', -> Baristas.find()
@@ -75,9 +81,12 @@ Meteor.methods
     status = "Waiting"
     barista = js.barista
     Orders.insert({number: number, barista: barista, status: status})
+  'products_remove': (id) -> Products.remove({_id: id})
   'products_insert': (order_id) -> Products.insert({order_id: order_id, type: "Drink"})
   'barista_update': (id, barista) -> Orders.update({_id: id}, {$set: {barista: barista}})
   'status_update': (id, status) -> Orders.update({_id: id}, {$set: {status: status}})
+  'mods_remove': (id) ->  Mods.remove({_id: id})
+  'mods_insert': (name, type, id) -> Mods.insert({name: name, type: type, product_id: id})
 
 # on startup - create collections with default values
 Meteor.startup ->
