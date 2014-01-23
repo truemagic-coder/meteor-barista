@@ -76,6 +76,8 @@ Meteor.methods
     barista = js.barista
     Orders.insert({number: number, barista: barista, status: status})
   'products_insert': (order_id) -> Products.insert({order_id: order_id, type: "Drink"})
+  'barista_update': (id, barista) -> Orders.update({_id: id}, {$set: {barista: barista}})
+  'status_update': (id, status) -> Orders.update({_id: id}, {$set: {status: status}})
 
 # on startup - create collections with default values
 Meteor.startup ->

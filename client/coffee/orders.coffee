@@ -9,10 +9,10 @@ Template.orders_index.events
 Template.orders_edit.events
   'change #barista': (e, t) -> 
     barista = t.find('#barista option:selected').value
-    Orders.update({_id: Session.get('id')}, {$set: {barista: barista}})
+    Meteor.call 'barista_update', Session.get('id'), barista
   'change #status': ->
     status = $('#status option:selected').val()
-    Orders.update({_id: Session.get('id')}, {$set: {status: status}})
+    Meteor.call 'status_update', Session.get('id'), status
   'click #add': -> Meteor.call 'products_insert', Session.get('id')
   'click #back': -> Router.go('orders')
 
