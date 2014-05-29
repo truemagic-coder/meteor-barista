@@ -49,8 +49,8 @@ Meteor.startup ->
       layoutTemplate: 'layout'
       data: ->
         @.params.id
-      before: ->
-        Session.set('id', @.getData())
+      onBeforeAction: ->
+        Session.set('id', @.params.id)
     @.route 'drinks',
       path: '/drinks'
       template: 'drinks_index'
@@ -65,8 +65,8 @@ Meteor.startup ->
       layoutTemplate: 'layout'
       data: ->
         @.params.id
-      before: ->
-        Session.set('id', @.getData())
+      onBeforeAction: ->
+        Session.set('id', @.params.id)
     @.route 'orders',
       path: '/orders'
       template: 'orders_index'
@@ -81,8 +81,8 @@ Meteor.startup ->
       layoutTemplate: 'layout'
       data: ->
         @.params.id
-      before: ->
-        Session.set('id', @.getData())
+      onBeforeAction: ->
+        Session.set('id', @.params.id)
   # go to /_routes to view routes
   Router.configure
     routesUri: '_routes'
