@@ -17,18 +17,18 @@
       },
       "sugar": {
         "git": "https://github.com/bevanhunt/meteor-sugar.git",
-        "tag": "v0.1.6",
-        "commit": "8973ed7e027e260a572571d02d0f4a428ca866f9"
+        "tag": "v0.1.7",
+        "commit": "eef2d45055fabeb27c003f39bb36b97a361b4455"
       },
       "knockout": {
         "git": "https://github.com/bevanhunt/meteor-knockout.git",
-        "tag": "v0.3.1",
-        "commit": "cba4f2abe1a4e4842eee7307f2d261ed2d00f63e"
+        "tag": "v0.3.2",
+        "commit": "f74925ca030cf4c266b2ca4637f33c2cd56d0a06"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
-        "tag": "v0.6.2",
-        "commit": "ce56e58b45624dce992490f3a1c10f10d3948bae"
+        "tag": "v0.7.1",
+        "commit": "d1ffb3f06ea4c112132b030f2eb1a70b81675ecb"
       },
       "iron-router-output": {
         "git": "https://github.com/XpressiveCode/iron-router-output.git",
@@ -37,8 +37,13 @@
       },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
-        "tag": "v0.3.7",
-        "commit": "5dd0d142c870647b910be80bc777b96f0dd45e5e"
+        "tag": "v3.1.1-1",
+        "commit": "63dd38968828bb8963636df93e9a1c45e2dfe67e"
+      },
+      "blaze-layout": {
+        "git": "https://github.com/EventedMind/blaze-layout.git",
+        "tag": "v0.2.4",
+        "commit": "b40e9b0612329288d75cf52ad14a7da64bb8618f"
       }
     }
   }
